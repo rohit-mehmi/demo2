@@ -113,6 +113,11 @@ img, video { display: block; max-width: 100%; }
   box-shadow: 0 0 18px 3px color-mix(in oklab, var(--ember) 60%, transparent);
 }
 .brand-name { font-size: 1.125rem; letter-spacing: -0.02em; }
+.brand-short { display: none; }
+@media (max-width: 480px) {
+  .brand-full { display: none; }
+  .brand-short { display: inline; }
+}
 
 .nav { display: none; align-items: center; gap: 32px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: color-mix(in oklab, var(--ink) 60%, transparent); }
 @media (min-width: 768px) { .nav { display: flex; } }
@@ -167,6 +172,25 @@ img, video { display: block; max-width: 100%; }
 @media (min-width: 768px) { .hero-title { font-size: 4.5rem; } }
 
 .lead { margin-top: 32px; font-size: 1.125rem; line-height: 1.7; color: color-mix(in oklab, var(--ink) 60%, transparent); }
+
+.typewriter-line {
+  margin-top: 4px; display: flex; align-items: center; flex-wrap: wrap;
+  min-height: 2.5rem;
+}
+@media (min-width: 768px) { .typewriter-line { min-height: 4.5rem; } }
+.typewriter-static { color: var(--ink); }
+.typewriter-dynamic {
+  display: inline-block; min-width: 4px;
+  font-family: var(--font-display); font-weight: 800; letter-spacing: -0.04em; line-height: 0.88;
+  font-size: 2.5rem;
+}
+@media (min-width: 768px) { .typewriter-dynamic { font-size: 4.5rem; } }
+.typewriter-cursor {
+  display: inline-block; margin-left: 4px; color: var(--ember);
+  font-size: 2.5rem; font-weight: 300; line-height: 1;
+  animation: caret-blink 0.85s step-end infinite;
+}
+@media (min-width: 768px) { .typewriter-cursor { font-size: 4rem; } }
 
 .cta-row { margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 .cta-row-center { justify-content: center; }
@@ -242,6 +266,58 @@ img, video { display: block; max-width: 100%; }
 @keyframes pulse-ring { 0%, 100% { opacity: .35; transform: scale(1); } 50% { opacity: .9; transform: scale(1.08); } }
 @keyframes marquee-x { to { transform: translateX(-50%); } }
 @keyframes bar-breathe { 0%, 100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+@keyframes caret-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* ---------- static pages (about / services / contact) ---------- */
+.page-main { position: relative; z-index: 20; margin: 0 auto; width: 85%; padding: 0 24px 96px; }
+@media (min-width: 768px) { .page-main { padding: 0 56px 120px; } }
+
+.page-hero { padding-top: 160px; padding-bottom: 40px; }
+.page-hero .section-title { margin-top: 20px; }
+
+.page-block { padding: 56px 0; border-top: 1px solid color-mix(in oklab, var(--ink) 10%, transparent); }
+.page-block:first-of-type { border-top: none; }
+
+.card-grid { margin-top: 40px; display: grid; gap: 24px; grid-template-columns: 1fr; }
+@media (min-width: 768px) { .card-grid { grid-template-columns: 1fr 1fr; } }
+.card-grid.cols-3 { grid-template-columns: 1fr; }
+@media (min-width: 768px) { .card-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; } }
+
+.info-card {
+  border-radius: 1.5rem; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  padding: 28px; transition: border-color .3s, transform .3s;
+}
+.info-card:hover { border-color: var(--ember); transform: translateY(-3px); }
+.info-card h3 { margin: 0 0 12px; font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
+.info-card p { margin: 0; color: color-mix(in oklab, var(--ink) 65%, transparent); line-height: 1.6; }
+.info-card .eyebrow-index { margin-bottom: 16px; }
+
+.stat-row { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.stat-row .metric-value { font-size: 1.75rem; }
+@media (min-width: 768px) { .stat-row .metric-value { font-size: 2.25rem; } }
+
+.contact-layout { margin-top: 40px; display: grid; gap: 48px; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .contact-layout { grid-template-columns: 1.1fr 0.9fr; } }
+
+.contact-form { display: grid; gap: 20px; }
+.form-field { display: grid; gap: 8px; }
+.form-field label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.22em; color: color-mix(in oklab, var(--ink) 55%, transparent); }
+.form-field input, .form-field select, .form-field textarea {
+  border-radius: 0.9rem; border: 1px solid color-mix(in oklab, var(--ink) 18%, transparent);
+  padding: 14px 16px; font-family: var(--font-body); font-size: 1rem;
+  background: var(--background); color: var(--ink);
+}
+.form-field textarea { resize: vertical; min-height: 120px; }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus { outline: none; border-color: var(--ember); }
+.form-submit { margin-top: 8px; border: none; }
+
+.contact-detail { display: flex; flex-direction: column; gap: 18px; }
+.contact-detail-item { border-radius: 1.5rem; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); padding: 24px; }
+.contact-detail-item .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.24em; color: var(--ember-deep); }
+.contact-detail-item .value { margin-top: 8px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
+.form-status { margin-top: 8px; font-size: 13px; color: var(--ember-deep); min-height: 1em; }
+
+.page-footer-spacer { margin-top: 64px; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
