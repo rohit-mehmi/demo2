@@ -11,6 +11,7 @@
   --ink: oklch(0.15 0.02 265);
   --font-display: "Syne", sans-serif;
   --font-body: "Space Grotesk", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "Courier New", monospace;
 }
 
 * { box-sizing: border-box; }
@@ -174,23 +175,23 @@ img, video { display: block; max-width: 100%; }
 .lead { margin-top: 32px; font-size: 1.125rem; line-height: 1.7; color: color-mix(in oklab, var(--ink) 60%, transparent); }
 
 .typewriter-line {
-  margin-top: 4px; display: flex; align-items: center; flex-wrap: wrap;
-  min-height: 2.5rem;
+  margin-top: 12px; display: flex; align-items: center; flex-wrap: wrap;
+  min-height: 1.8rem;
 }
-@media (min-width: 768px) { .typewriter-line { min-height: 4.5rem; } }
+@media (min-width: 768px) { .typewriter-line { min-height: 2.4rem; } }
 .typewriter-static { color: var(--ink); }
 .typewriter-dynamic {
   display: inline-block; min-width: 4px;
-  font-family: var(--font-display); font-weight: 800; letter-spacing: -0.04em; line-height: 0.88;
-  font-size: 2.5rem;
+  font-family: var(--font-mono); font-weight: 700; letter-spacing: -0.01em; line-height: 1.2;
+  font-size: 1.375rem;
 }
-@media (min-width: 768px) { .typewriter-dynamic { font-size: 4.5rem; } }
+@media (min-width: 768px) { .typewriter-dynamic { font-size: 1.85rem; } }
 .typewriter-cursor {
-  display: inline-block; margin-left: 4px; color: var(--ember);
-  font-size: 2.5rem; font-weight: 300; line-height: 1;
+  display: inline-block; margin-left: 3px; color: var(--ember);
+  font-family: var(--font-mono); font-size: 1.375rem; font-weight: 700; line-height: 1;
   animation: caret-blink 0.85s step-end infinite;
 }
-@media (min-width: 768px) { .typewriter-cursor { font-size: 4rem; } }
+@media (min-width: 768px) { .typewriter-cursor { font-size: 1.85rem; } }
 
 .cta-row { margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 .cta-row-center { justify-content: center; }
