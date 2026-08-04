@@ -52,6 +52,84 @@
     requestAnimationFrame(tick);
   })();
 
+  /* ================= TYPEWRITER (type + erase loop) ================= */
+  (function typewriter() {
+    const node = document.getElementById("typewriter");
+    if (!node) return;
+
+    const words = ["Website Designing", "SEO", "SMO", "Quality Backlinks", "PPC Campaigns", "Content Marketing"];
+    const TYPE_SPEED = 85;   // ms per character while typing
+    const DELETE_SPEED = 45; // ms per character while erasing
+    const HOLD_TIME = 1400;  // pause once a word is fully typed
+    const GAP_TIME = 350;    // pause once a word is fully erased
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function tick() {
+      const word = words[wordIndex];
+
+      if (!deleting) {
+        charIndex++;
+        node.textContent = word.slice(0, charIndex);
+        if (charIndex === word.length) {
+          deleting = true;
+          setTimeout(tick, HOLD_TIME);
+          return;
+        }
+        setTimeout(tick, TYPE_SPEED);
+        return;
+      }
+
+      charIndex--;
+      node.textContent = word.slice(0, charIndex);
+      if (charIndex === 0) {
+        deleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(tick, GAP_TIME);
+        return;
+      }
+      setTimeout(tick, DELETE_SPEED);
+    }
+
+    setTimeout(tick, 500);
+  })();
+
+  /* ================= CONTACT FORM ================= */
+  /* GitHub Pages can't run a backend, so this opens a pre-filled email to
+     you instead. To collect submissions directly, swap this for a service
+     like Formspree or Getform: give the <form> their action URL and remove
+     this handler — their script will POST the fields for you. */
+  (function contactForm() {
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("formStatus");
+    if (!form) return;
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim();
+      const service = form.service.value;
+      const message = form.message.value.trim();
+
+      const subject = `New enquiry — ${service}`;
+      const bodyLines = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        phone ? `Phone: ${phone}` : null,
+        `Service: ${service}`,
+        "",
+        message || "(no message provided)",
+      ].filter(Boolean);
+
+      const mailto = `mailto:hello@webdominators.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+      if (status) status.textContent = "Opening your email app to send this…";
+      window.location.href = mailto;
+    });
+  })();
+
   /* ================= EQUALIZER BARS ================= */
   (function equalizer() {
     const wrap = document.getElementById("equalizer");
@@ -68,7 +146,7 @@
   (function marquee() {
     const track = document.getElementById("marqueeTrack");
     if (!track) return;
-    const words = ["SEO audit", "Backlinks", "Web design", "Social media", "Analytics", "Growth"];
+    const words = ["Website Designing", "SEO", "SMO", "Quality Backlinks", "Analytics", "Growth"];
     for (let r = 0; r < 2; r++) {
       const group = document.createElement("span");
       group.className = "group";
@@ -88,6 +166,7 @@
   /* ================= SECTION SCROLLER ================= */
   (function sectionScroller() {
     const sections = () => Array.from(document.querySelectorAll("main section"));
+    if (!sections().length) return; // no full-screen sections on this page — let it scroll natively
     let animating = false;
     let raf = 0;
     let index = Math.round(scrollY / (innerHeight || 1));
