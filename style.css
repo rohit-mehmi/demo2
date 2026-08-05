@@ -9,8 +9,8 @@
   --ember-deep: oklch(0.42 0.18 263);
   --ember-glow: oklch(0.74 0.14 248);
   --ink: oklch(0.15 0.02 265);
-  --font-display: "Syne", sans-serif;
-  --font-body: "Space Grotesk", sans-serif;
+  --font-display: "Fraunces", serif;
+  --font-body: Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Space Mono", ui-monospace, "Courier New", monospace;
 }
 
