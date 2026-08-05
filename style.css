@@ -241,6 +241,7 @@ img, video { display: block; max-width: 100%; }
 
 .carousel {
   margin-top: 48px; width: 100%; overflow: hidden;
+  padding: 32px 0 12px;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
@@ -253,12 +254,7 @@ img, video { display: block; max-width: 100%; }
   border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
   background: var(--background);
   padding: 24px 22px; backdrop-filter: blur(2px);
-  animation: float-soft 6s ease-in-out infinite;
   transition: border-color .3s, transform .3s, background-color .3s, box-shadow .3s;
-}
-.carousel-card:hover,
-.carousel-card.carousel-card-neighbor {
-  animation-play-state: paused; /* stop the floating bob so the pop below isn't fighting it */
 }
 .carousel-card:hover {
   z-index: 5; border-color: var(--ember); background: var(--ember);
