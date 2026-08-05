@@ -190,7 +190,6 @@
       CARDS.forEach((c, idx) => {
         const card = document.createElement("div");
         card.className = "carousel-card";
-        card.style.animationDelay = `${(idx % CARDS.length) * 0.35}s`;
         const iconWrap = document.createElement("div");
         iconWrap.className = "carousel-icon";
         iconWrap.innerHTML = ICONS[c.icon];
