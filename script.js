@@ -197,11 +197,52 @@
         const h3 = document.createElement("h3");
         h3.textContent = c.title;
         const p = document.createElement("p");
-        p.textContent = c.desc;
+        p.className = "carousel-desc";
         card.appendChild(iconWrap);
         card.appendChild(h3);
         card.appendChild(p);
         track.appendChild(card);
+
+        // type the description in on hover, instead of showing it up front
+        let typeTimer = null;
+        function typeIn() {
+          clearTimeout(typeTimer);
+          p.textContent = "";
+          p.classList.add("is-typing");
+          let i = 0;
+          const text = c.desc;
+          (function step() {
+            i++;
+            p.textContent = text.slice(0, i);
+            if (i < text.length) {
+              typeTimer = setTimeout(step, 16);
+            } else {
+              p.classList.remove("is-typing");
+            }
+          })();
+        }
+        function clearDesc() {
+          clearTimeout(typeTimer);
+          p.classList.remove("is-typing");
+          p.textContent = "";
+        }
+
+        // chained lift on the immediate neighbours while this card is hovered
+        function setNeighbors(active) {
+          const prev = card.previousElementSibling;
+          const next = card.nextElementSibling;
+          if (prev) prev.classList.toggle("carousel-card-neighbor", active);
+          if (next) next.classList.toggle("carousel-card-neighbor", active);
+        }
+
+        card.addEventListener("mouseenter", () => {
+          typeIn();
+          setNeighbors(true);
+        });
+        card.addEventListener("mouseleave", () => {
+          clearDesc();
+          setNeighbors(false);
+        });
       });
     }
   })();
