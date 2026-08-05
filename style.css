@@ -2,6 +2,8 @@
    EMBER — plain CSS rebuild (colors/fonts/keyframes 1:1 from source)
    ============================================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.13 0 0);
