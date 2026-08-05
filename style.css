@@ -241,11 +241,14 @@ img, video { display: block; max-width: 100%; }
 
 .carousel {
   margin-top: 48px; width: 100%; overflow: hidden;
-  padding: 32px 0 12px;
+  padding: 44px 0 16px;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
-.carousel-track { display: flex; width: max-content; gap: 20px; animation: marquee-x 34s linear infinite; }
+.carousel-track {
+  display: flex; align-items: flex-start; width: max-content; gap: 20px;
+  animation: marquee-x 34s linear infinite;
+}
 .carousel-track:hover { animation-play-state: paused; }
 
 .carousel-card {
@@ -254,7 +257,12 @@ img, video { display: block; max-width: 100%; }
   border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
   background: var(--background);
   padding: 24px 22px; backdrop-filter: blur(2px);
+  animation: float-soft 6s ease-in-out infinite;
   transition: border-color .3s, transform .3s, background-color .3s, box-shadow .3s;
+}
+.carousel-card:hover,
+.carousel-card.carousel-card-neighbor {
+  animation-play-state: paused; /* stop the idle wave so the hover pop isn't fighting it */
 }
 .carousel-card:hover {
   z-index: 5; border-color: var(--ember); background: var(--ember);
@@ -282,7 +290,7 @@ img, video { display: block; max-width: 100%; }
   transition: color .3s;
 }
 .carousel-desc {
-  margin: 0; min-height: 2.75em; font-size: 0.875rem; line-height: 1.55;
+  margin: 0; min-height: 0; font-size: 0.875rem; line-height: 1.55;
   color: color-mix(in oklab, white 88%, transparent);
   transition: color .3s;
 }
@@ -292,6 +300,7 @@ img, video { display: block; max-width: 100%; }
   animation: caret-blink 0.7s step-end infinite;
 }
 .carousel-card:hover h3 { color: white; }
+.carousel-card:hover .carousel-desc { min-height: 2.75em; }
 
 /* ---------- CTA / footer ---------- */
 .cta-section {
