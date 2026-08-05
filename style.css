@@ -248,26 +248,41 @@ img, video { display: block; max-width: 100%; }
 .carousel-track:hover { animation-play-state: paused; }
 
 .carousel-card {
+  position: relative; z-index: 1;
   width: 210px; flex-shrink: 0; border-radius: 1.5rem;
   border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+  background: var(--background);
   padding: 24px 22px; backdrop-filter: blur(2px);
   animation: float-soft 6s ease-in-out infinite;
-  transition: border-color .3s, transform .3s;
+  transition: border-color .3s, transform .3s, background-color .3s, box-shadow .3s;
 }
-.carousel-card:hover { border-color: var(--ember); transform: translateY(-6px); }
+.carousel-card:hover {
+  z-index: 5; border-color: var(--ember); background: var(--ember);
+  transform: translateY(-10px) scale(1.08);
+  box-shadow: 0 24px 44px -14px color-mix(in oklab, var(--ember) 55%, transparent);
+}
 
 .carousel-icon {
   width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
   border-radius: 999px; border: 1px solid color-mix(in oklab, var(--ember) 40%, transparent);
   color: var(--ember-deep); animation: pulse-ring 3s ease-in-out infinite;
+  transition: border-color .3s, color .3s;
 }
 .carousel-icon svg { width: 20px; height: 20px; }
+.carousel-card:hover .carousel-icon { border-color: white; color: white; }
 
 .carousel-card h3 {
   margin: 16px 0 6px; font-family: var(--font-display); font-weight: 700;
   font-size: 1.05rem; letter-spacing: -0.01em;
+  transition: color .3s;
 }
-.carousel-card p { margin: 0; font-size: 0.875rem; line-height: 1.55; color: color-mix(in oklab, var(--ink) 60%, transparent); }
+.carousel-card p {
+  margin: 0; font-size: 0.875rem; line-height: 1.55;
+  color: color-mix(in oklab, var(--ink) 60%, transparent);
+  transition: color .3s;
+}
+.carousel-card:hover h3 { color: white; }
+.carousel-card:hover p { color: color-mix(in oklab, white 88%, transparent); }
 
 /* ---------- CTA / footer ---------- */
 .cta-section {
