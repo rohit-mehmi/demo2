@@ -163,6 +163,49 @@
     }
   })();
 
+  /* ================= SHOWCASE CAROUSEL ================= */
+  (function carousel() {
+    const track = document.getElementById("carouselTrack");
+    if (!track) return;
+
+    const ICONS = {
+      design: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+      seo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"/><path d="M20 20l-5.5-5.5M7.7 10.2l1.6-2.7L11 10l2.2-3.8"/></svg>',
+      smo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><path d="M8.1 10.8 15.9 7.2M8.1 13.2l7.8 3.6"/></svg>',
+      backlinks: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l6-6"/><path d="M8.4 8.4 10.8 6a3.6 3.6 0 0 1 5.1 5.1l-1 1"/><path d="M15.6 15.6 13.2 18a3.6 3.6 0 0 1-5.1-5.1l1-1"/></svg>',
+      ppc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.2"/><circle cx="12" cy="12" r="0.6" fill="currentColor" stroke="none"/></svg>',
+      content: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h6M9 16h6M9 8h3"/></svg>',
+    };
+
+    const CARDS = [
+      { icon: "design", title: "Website Designing", desc: "Fast, mobile-first sites built to convert." },
+      { icon: "seo", title: "SEO", desc: "Rankings built on real technical fixes." },
+      { icon: "smo", title: "SMO", desc: "One consistent voice, every platform." },
+      { icon: "backlinks", title: "Quality Backlinks", desc: "Authority earned link by link." },
+      { icon: "ppc", title: "PPC Campaigns", desc: "Paid spend that actually converts." },
+      { icon: "content", title: "Content Marketing", desc: "Words that rank and read well." },
+    ];
+
+    for (let r = 0; r < 2; r++) {
+      CARDS.forEach((c, idx) => {
+        const card = document.createElement("div");
+        card.className = "carousel-card";
+        card.style.animationDelay = `${(idx % CARDS.length) * 0.35}s`;
+        const iconWrap = document.createElement("div");
+        iconWrap.className = "carousel-icon";
+        iconWrap.innerHTML = ICONS[c.icon];
+        const h3 = document.createElement("h3");
+        h3.textContent = c.title;
+        const p = document.createElement("p");
+        p.textContent = c.desc;
+        card.appendChild(iconWrap);
+        card.appendChild(h3);
+        card.appendChild(p);
+        track.appendChild(card);
+      });
+    }
+  })();
+
   /* ================= SECTION SCROLLER ================= */
   (function sectionScroller() {
     const sections = () => Array.from(document.querySelectorAll("main section"));
@@ -467,6 +510,7 @@
 
     const SCENES = [
       { obj: heroVideo, x: 72, y: 54, s: 1, from: "up" },
+      { obj: null, x: 50, y: 20, s: 0.8, from: "down" },
       { obj: seoVideo, x: 26, y: 50, s: 0.9, from: "left" },
       { obj: makeLinkWeb(), x: 74, y: 50, s: 0.92, from: "right" },
       { obj: makePanelStack(), x: 26, y: 50, s: 0.9, from: "left" },
