@@ -550,9 +550,9 @@
     const seoVideo = makeMascotVideo("assets/seo-mascot.webm", "assets/seo-mascot.mp4", 360);
 
     const SCENES = [
-      { obj: heroVideo, x: 72, y: 54, s: 1, from: "up" },
+      { obj: heroVideo, x: 72, y: 54, s: 1.35, from: "up" },
       { obj: null, x: 50, y: 20, s: 0.8, from: "down" },
-      { obj: seoVideo, x: 26, y: 50, s: 0.9, from: "left" },
+      { obj: seoVideo, x: 26, y: 50, s: 1.2, from: "left" },
       { obj: makeLinkWeb(), x: 74, y: 50, s: 0.92, from: "right" },
       { obj: makePanelStack(), x: 26, y: 50, s: 0.9, from: "left" },
       { obj: makeSocialOrbit(), x: 74, y: 50, s: 0.94, from: "right" },
