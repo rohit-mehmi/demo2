@@ -548,11 +548,13 @@
     // point to /assets/<file> — drop your exported video files there
     const heroVideo = makeMascotVideo("assets/hero-mascot.webm", "assets/hero-mascot.mp4", 312);
     const seoVideo = makeMascotVideo("assets/seo-mascot.webm", "assets/seo-mascot.mp4", 360);
-    const showcaseVideo = makeMascotVideo("assets/showcase-mascot.webm", "assets/showcase-mascot.mp4", 300);
+    // showcase-mascot is now docked directly in the showcase row (see index.html),
+    // so it's dropped from the floating stage here — obj: null keeps this slot's
+    // scroll-timing index intact for the scenes after it.
 
     const SCENES = [
       { obj: heroVideo, x: 72, y: 54, s: 1.35, from: "up" },
-      { obj: showcaseVideo, x: 68, y: 46, s: 1.28, from: "right" },
+      { obj: null, x: 68, y: 46, s: 1.28, from: "right" },
       { obj: seoVideo, x: 26, y: 50, s: 1.2, from: "left" },
       { obj: makeLinkWeb(), x: 74, y: 50, s: 0.92, from: "right" },
       { obj: makePanelStack(), x: 26, y: 50, s: 0.9, from: "left" },
