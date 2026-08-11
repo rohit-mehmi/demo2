@@ -237,10 +237,37 @@ img, video { display: block; max-width: 100%; }
 .equalizer-label { margin-top: 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: color-mix(in oklab, var(--ink) 40%, transparent); }
 
 /* ---------- showcase carousel ---------- */
+.showcase-section {
+  background: color-mix(in oklab, var(--ember) 6%, var(--background));
+}
 .showcase-wrap { width: 100%; }
 
+.showcase-row {
+  margin-top: 48px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 10% 55% 5% 20% 10%;
+  align-items: center;
+}
+
+.showcase-character {
+  grid-column: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.showcase-character-video {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  animation: float-soft 7s ease-in-out infinite;
+}
+
 .carousel {
-  margin-top: 48px; width: 100%; overflow: hidden;
+  grid-column: 2;
+  width: 100%; overflow: hidden;
   padding: 44px 0 16px;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
