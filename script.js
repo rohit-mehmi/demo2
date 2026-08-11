@@ -548,10 +548,11 @@
     // point to /assets/<file> — drop your exported video files there
     const heroVideo = makeMascotVideo("assets/hero-mascot.webm", "assets/hero-mascot.mp4", 312);
     const seoVideo = makeMascotVideo("assets/seo-mascot.webm", "assets/seo-mascot.mp4", 360);
+    const showcaseVideo = makeMascotVideo("assets/showcase-mascot.webm", "assets/showcase-mascot.mp4", 330);
 
     const SCENES = [
       { obj: heroVideo, x: 72, y: 54, s: 1.35, from: "up" },
-      { obj: null, x: 50, y: 20, s: 0.8, from: "down" },
+      { obj: showcaseVideo, x: 76, y: 46, s: 1.15, from: "right" },
       { obj: seoVideo, x: 26, y: 50, s: 1.2, from: "left" },
       { obj: makeLinkWeb(), x: 74, y: 50, s: 0.92, from: "right" },
       { obj: makePanelStack(), x: 26, y: 50, s: 0.9, from: "left" },
