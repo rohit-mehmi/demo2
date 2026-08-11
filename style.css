@@ -242,13 +242,14 @@ img, video { display: block; max-width: 100%; }
 }
 .showcase-wrap { width: 100%; }
 
-.showcase-row {
-  margin-top: 48px;
+.showcase-top-row {
   width: 100%;
   display: grid;
   grid-template-columns: 10% 55% 5% 20% 10%;
-  align-items: center;
+  align-items: center; /* text block and character share the same vertical center */
 }
+
+.showcase-text { grid-column: 2; }
 
 .showcase-character {
   grid-column: 4;
@@ -258,11 +259,18 @@ img, video { display: block; max-width: 100%; }
 }
 .showcase-character-video {
   width: 100%;
-  max-width: 260px;
+  max-width: 360px; /* up from 260px */
   height: auto;
   object-fit: contain;
   mix-blend-mode: multiply;
   animation: float-soft 7s ease-in-out infinite;
+}
+
+.showcase-carousel-row {
+  margin-top: 56px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
 }
 
 .carousel {
@@ -285,8 +293,10 @@ img, video { display: block; max-width: 100%; }
   background: var(--background);
   padding: 24px 22px; backdrop-filter: blur(2px);
   animation: float-soft 6s ease-in-out infinite;
-  transition: border-color .3s, transform .3s, background-color .3s, box-shadow .3s;
+  opacity: 0;
+  transition: opacity .6s ease, border-color .3s, transform .3s, background-color .3s, box-shadow .3s;
 }
+.carousel.in-view .carousel-card { opacity: 1; }
 .carousel-card:hover,
 .carousel-card.carousel-card-neighbor {
   animation-play-state: paused; /* stop the idle wave so the hover pop isn't fighting it */
