@@ -245,7 +245,27 @@
         });
       });
     }
+
+    // reveal once, staggered per-card via each card's own animation-delay above
+    const carouselEl = track.closest(".carousel");
+    if (carouselEl && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              carouselEl.classList.add("in-view");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.25 }
+      );
+      io.observe(carouselEl);
+    } else if (carouselEl) {
+      carouselEl.classList.add("in-view"); // no IO support — just show them
+    }
   })();
+
 
   /* ================= SECTION SCROLLER ================= */
   (function sectionScroller() {
