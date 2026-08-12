@@ -126,6 +126,36 @@ img, video { display: block; max-width: 100%; }
 @media (min-width: 768px) { .nav { display: flex; } }
 .nav a:hover { color: var(--ember-deep); }
 
+/* ---------- mobile nav ---------- */
+.nav-toggle {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 5px; width: 36px; height: 36px; padding: 0;
+  background: none; border: none; cursor: pointer;
+}
+@media (min-width: 768px) { .nav-toggle { display: none; } }
+.nav-toggle-bar {
+  display: block; width: 22px; height: 2px; background: var(--ink);
+  transition: transform .3s cubic-bezier(.16,1,.3,1), opacity .2s ease;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-nav {
+  position: fixed; inset: 0; z-index: 28;
+  background: var(--background);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px;
+  transform: translateY(-8px); opacity: 0; pointer-events: none;
+  transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .3s ease;
+}
+.mobile-nav.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.mobile-nav a {
+  font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em;
+  font-size: 1.75rem; color: var(--ink);
+}
+.mobile-nav a:hover { color: var(--ember-deep); }
+@media (min-width: 768px) { .mobile-nav { display: none; } }
+
 /* ---------- pills / buttons ---------- */
 .pill {
   position: relative; display: inline-flex; align-items: center; gap: 0.6rem;
@@ -384,6 +414,7 @@ img, video { display: block; max-width: 100%; }
 
 .site-footer {
   margin-top: 40px; display: flex; width: 100%; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 8px 24px;
   font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em;
   color: color-mix(in oklab, var(--ink) 40%, transparent);
 }
@@ -449,4 +480,9 @@ img, video { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .carousel-card { opacity: 1; animation: none; transition: none; }
+}
+
+@media (max-width: 420px) {
+  .metric-grid { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: 1fr; }
 }
