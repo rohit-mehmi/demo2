@@ -19,6 +19,37 @@
     return n;
   };
 
+  /* ================= MOBILE NAV ================= */
+  (function mobileNav() {
+    const toggle = document.getElementById("navToggle");
+    const nav = document.getElementById("mobileNav");
+    if (!toggle || !nav) return;
+
+    function close() {
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open menu");
+      nav.classList.remove("is-open");
+      nav.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+    function open() {
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", "Close menu");
+      nav.classList.add("is-open");
+      nav.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      if (isOpen) close(); else open();
+    });
+    nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", close));
+    window.addEventListener("resize", () => {
+      if (innerWidth >= 768) close();
+    });
+  })();
+
   /* ================= CURSOR ================= */
   (function cursor() {
     if (window.matchMedia("(pointer: coarse)").matches) return;
