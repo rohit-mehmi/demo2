@@ -293,10 +293,14 @@ img, video { display: block; max-width: 100%; }
   background: var(--background);
   padding: 24px 22px; backdrop-filter: blur(2px);
   animation: float-soft 6s ease-in-out infinite;
+  animation-play-state: paused; /* starts still, "wakes up" into its float once revealed */
   opacity: 0;
   transition: opacity .6s ease, border-color .3s, transform .3s, background-color .3s, box-shadow .3s;
 }
-.carousel.in-view .carousel-card { opacity: 1; }
+.carousel.in-view .carousel-card {
+  opacity: 1;
+  animation-play-state: running; /* each card's own animation-delay (set in JS) staggers this */
+}
 .carousel-card:hover,
 .carousel-card.carousel-card-neighbor {
   animation-play-state: paused; /* stop the idle wave so the hover pop isn't fighting it */
@@ -427,4 +431,5 @@ img, video { display: block; max-width: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .carousel-card { opacity: 1; animation: none; transition: none; }
 }
